@@ -1,3 +1,33 @@
-body {
+/* body {
   background-color: thistle;
+} */
+
+* {
+  border: 1px solid gold;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#main {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  background-color: thistle;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-board {
+  width: 70%;
+  height: 90%;
+  background-color: lemonchiffon;
+}
+
+#player-aside {
+  width: 15%;
+  height: 90%;
+  background-color: oldlace;
 }
