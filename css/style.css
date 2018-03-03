@@ -38,12 +38,22 @@ h1 {
   min-width: 400px;
 }
 
-#player-aside {
+#aside {
+  display: flex;
+  flex-direction: column;
   width: 15%;
   height: 90%;
   background-color: oldlace;
   max-width: 100px;
   min-width: 80px;
+}
+
+#controls{
+  height: 10%;
+}
+
+#player-aside, #player2-aside {
+  flex-grow: 1;
 }
 
 .square {
