@@ -21,13 +21,27 @@ html, body {
 }
 
 #game-board {
-  width: 70%;
+  display: flex;
+  width: 80%;
   height: 90%;
   background-color: lemonchiffon;
+  flex-flow: row wrap;
+  /* align-items: center; */
+  max-width: 500px;
 }
 
 #player-aside {
   width: 15%;
   height: 90%;
   background-color: oldlace;
+  max-width: 100px;
+}
+
+.square {
+  width: 19%;
+  /* height: 20%; */
+  flex-grow: 1;
+  background-color: whitesmoke;
+  margin: 0;
+  padding: 0;
 }
