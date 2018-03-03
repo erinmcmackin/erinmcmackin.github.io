@@ -36,6 +36,11 @@ $(()=>{
       // $player.appendTo($('.square').eq(randNum));
       $player.appendTo($('.square').eq(newPlace));
       prevPlace = newPlace;
+      if(newPlace > boardArr.length){
+        $player.appendTo($('.square').eq(boardArr.length));
+        console.log('Player wins!');
+        $rollBtn.prop('disabled', true);
+      }
     }
 
   };
