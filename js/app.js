@@ -6,8 +6,10 @@ $(()=>{
   const $square = $('.square');
   const $player = $('<img>').attr('src', 'https://png.pngtree.com/element_pic/17/01/04/4a21813fa12293173cb5fbfbc0157339.jpg').addClass('player');
   const $startBtn = $('#start');
-  const $rollBtn = $('#roll');
+  const $rollBtn = $('#roll').prop('disabled', true);
+  const $resetBtn = $('#reset').prop('disabled', true);
   let prevPlace = 0;
+
 
 
   const createGameBoard = ()=>{
@@ -18,11 +20,11 @@ $(()=>{
     // console.log(boardArr);
   };
 
-    createGameBoard();
-
   const functions = {
 
     start: ()=>{
+      $rollBtn.prop('disabled', false);
+      $resetBtn.prop('disabled', false);
       $player.appendTo($('.square').eq(0));
     },
 
@@ -41,11 +43,21 @@ $(()=>{
         console.log('Player wins!');
         $rollBtn.prop('disabled', true);
       }
+    },
+
+    resetGame: ()=>{
+      // console.log('hiii - RESET INITIATED');
+      $('.square').empty();
+      $rollBtn.prop('disabled', true);
+      $resetBtn.prop('disabled', true);
     }
 
   };
 
+  createGameBoard();
+
   $startBtn.on('click', functions.start);
   $rollBtn.on('click', functions.roll);
+  $resetBtn.on('click', functions.resetGame);
 
 });
