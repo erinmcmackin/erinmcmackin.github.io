@@ -11,8 +11,8 @@ $(()=>{
 
   const createGameBoard = ()=>{
     for(i = 1; i <= 50; i++){
-      boardArr.push(i);
       const $div = $('<div>').attr('class', 'square').appendTo('#game-board');
+      boardArr.push($div);
     };
     // console.log(boardArr);
   };
