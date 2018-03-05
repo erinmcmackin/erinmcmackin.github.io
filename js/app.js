@@ -5,7 +5,7 @@ $(()=>{
   const boardArr = [];
   const $square = $('.square');
   const $player = $('<img>').attr('src', 'https://png.pngtree.com/element_pic/17/01/04/4a21813fa12293173cb5fbfbc0157339.jpg').addClass('player');
-  const $player2 = $('<img>').attr('src', 'http://i.dailymail.co.uk/i/pix/2014/12/19/24297E7B00000578-0-image-a-11_1419023832559.jpg').addClass('player');
+  const $player2 = $('<img>').attr('src', 'https://vignette.wikia.nocookie.net/disney/images/a/a5/Bruce-FN.png/revision/latest?cb=20131111065729').addClass('player');
   const $closeLoadBtn = $('#close-load-btn');
   const $instructionsBtn = $('#instructions');
   const $closeInstBtn = $('#closeInstBtn');
@@ -13,8 +13,11 @@ $(()=>{
   const $rollBtn = $('#roll').prop('disabled', true);
   const $resetBtn = $('#reset').prop('disabled', true);
   const $rollBtn2 = $('#roll2').prop('disabled', true);
+  let randNum;
+  let randNum2;
   let prevPlace = 0;
   let prevPlace2 = 0;
+
 
 
   const createGameBoard = ()=>{
@@ -47,12 +50,22 @@ $(()=>{
       $player2.appendTo($('.square').eq(0));
     },
 
+    writeRoll: ()=>{
+      $('#roll-num').empty(); $('<h3>').text(randNum).appendTo($('#roll-num'));
+    },
+
+    writeRoll2: ()=>{
+      $('#roll-num2').empty();
+      $('<h3>').text(randNum2).appendTo($('#roll-num2'));
+    },
+
     roll: ()=>{
       // console.log('oh haiiii');
-      const randNum = Math.floor(Math.random() * 5 + 1);
-      console.log(randNum);
+      randNum = Math.floor(Math.random() * 5 + 1);
+      // console.log(randNum);
+      functions.writeRoll();
       let newPlace = prevPlace + randNum;
-      console.log('new place is ' + newPlace);
+      // console.log('new place is ' + newPlace);
       $player.appendTo($('.square').eq(newPlace));
       prevPlace = newPlace;
       if(newPlace >= boardArr.length){
@@ -61,14 +74,17 @@ $(()=>{
         console.log('Player 1 wins!');
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', true);
+      } else if(newPlace > 0 && newPlace === prevPlace2){
+        console.log('same spot');
       }
     },
 
     roll2: ()=>{
       // console.log('oh haiiii');
-      const randNum = Math.floor(Math.random() * 5 + 1);
-      console.log(randNum);
-      let newPlace2 = prevPlace2 + randNum;
+      randNum2 = Math.floor(Math.random() * 5 + 1);
+      // console.log(randNum2);
+      functions.writeRoll2();
+      let newPlace2 = prevPlace2 + randNum2;
       $player2.appendTo($('.square').eq(newPlace2));
       prevPlace2 = newPlace2;
       if(newPlace2 >= boardArr.length){
@@ -76,6 +92,8 @@ $(()=>{
         console.log('Player 2 wins!');
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', true);
+      } else if(newPlace2 > 0 && newPlace2 === prevPlace){
+        console.log('same spot 2');
       }
     },
 
