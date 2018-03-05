@@ -21,6 +21,7 @@ $(()=>{
 
 
   const createGameBoard = ()=>{
+    // creates the board divs
     for(i = 0; i <= 49; i++){
       const $div = $('<div>').attr('class', 'square').attr('id', i).appendTo('#game-board');
       boardArr.push($div);
@@ -31,18 +32,22 @@ $(()=>{
   const functions = {
 
     onLoadClose: ()=>{
+      // closes the on laod modal
       $('#modal-load-bkgrd').css('display', 'none');
     },
 
     instructionsOpen: ()=>{
+      // opens the instructions modal
       $('#modal-inst-bkgrd').css('display', 'block');
     },
 
     instructionsClose: ()=>{
+      // closes the instructions modal
       $('#modal-inst-bkgrd').css('display', 'none');
     },
 
     start: ()=>{
+      // starting state for gameboard
       $rollBtn.prop('disabled', false);
       $rollBtn2.prop('disabled', false);
       $resetBtn.prop('disabled', false);
@@ -51,26 +56,32 @@ $(()=>{
     },
 
     writeRoll: ()=>{
+      // display the number rolled by Player 1 in the player's console
       $('#roll-num').empty(); $('<h3>').text(randNum).appendTo($('#roll-num'));
     },
 
     writeRoll2: ()=>{
+      // display the number rolle by Player 2 in the player's console
       $('#roll-num2').empty();
       $('<h3>').text(randNum2).appendTo($('#roll-num2'));
     },
 
+    battle: ()=>{
+
+    },
+
+    // roll a random number for Player 1
     roll: ()=>{
-      // console.log('oh haiiii');
+      // generate random number between 1 and 5
       randNum = Math.floor(Math.random() * 5 + 1);
-      // console.log(randNum);
       functions.writeRoll();
       let newPlace = prevPlace + randNum;
-      // console.log('new place is ' + newPlace);
+      // move the player to the new square (previous location plus random number rolled)
       $player.appendTo($('.square').eq(newPlace));
       prevPlace = newPlace;
+      // win logic
       if(newPlace >= boardArr.length){
         $player.appendTo($('.square').eq(boardArr.length - 1));
-        console.log(boardArr.length - 1);
         console.log('Player 1 wins!');
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', true);
@@ -79,14 +90,16 @@ $(()=>{
       }
     },
 
+    // roll a random number for Player 2
     roll2: ()=>{
-      // console.log('oh haiiii');
+      // generate random number between 1 and 5
       randNum2 = Math.floor(Math.random() * 5 + 1);
-      // console.log(randNum2);
       functions.writeRoll2();
       let newPlace2 = prevPlace2 + randNum2;
+      // move the player to the new square (previous location plus random number rolled)
       $player2.appendTo($('.square').eq(newPlace2));
       prevPlace2 = newPlace2;
+      // win logic
       if(newPlace2 >= boardArr.length){
         $player2.appendTo($('.square').eq(boardArr.length - 1));
         console.log('Player 2 wins!');
@@ -109,6 +122,7 @@ $(()=>{
 
   createGameBoard();
 
+  // event handlers
   $closeLoadBtn.on('click', functions.onLoadClose);
   $instructionsBtn.on('click', functions.instructionsOpen);
   $closeInstBtn.on('click', functions.instructionsClose);
