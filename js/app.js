@@ -85,7 +85,39 @@ $(()=>{
     // },
 
     battle: ()=>{
+      const shallWeDual = prompt('You\'ve caught up to Player 2. You can knock down a display to try to slow them down, or nod and carry on. What will you do?', 'knock display down / nod');
+      if (shallWeDual === 'knock display down'){
+        // console.log('knocked down display');
+        const randNumDual = Math.floor(Math.random() * 10 + 1);
+        console.log(randNumDual);
+        if (randNumDual > 4){
+          console.log('You tripped Player 2! You get to take their next roll');
+          $rollBtn.prop('disabled', false);
+          $rollBtn2.prop('disabled', true);
+        } else {
+          console.log('They were too fast to trip!');
+        }
+      } else {
+        console.log('what a whimp');
+      }
+    },
 
+    battle2: ()=>{
+      const shallWeDual = prompt('You\'ve caught up to Player 1. You can knock down a display to try to slow them down, or nod and carry on. What will you do?', 'knock display down / nod');
+      if (shallWeDual === 'knock display down'){
+        // console.log('knocked down display');
+        const randNumDual = Math.floor(Math.random() * 10 + 1);
+        console.log(randNumDual);
+        if (randNumDual > 4){
+          console.log('You tripped Player 1! You get to take their next roll');
+          $rollBtn.prop('disabled', true);
+          $rollBtn2.prop('disabled', false);
+        } else {
+          console.log('They were too fast to trip!');
+        }
+      } else {
+        console.log('what a whimp');
+      }
     },
 
     // roll a random number for Player 1
@@ -95,23 +127,24 @@ $(()=>{
       functions.writeRoll();
       newPlace = prevPlace + randNum;
       // move the player to the new square (previous location plus random number rolled)
-      $player.appendTo($('.square').eq(newPlace));
+      // setTimeout gives time for the rolled number to show before moving
+      setTimeout(function(){
+        $player.appendTo($('.square').eq(newPlace));
+      }, 800);
       // functions.movePlayer();
       prevPlace = newPlace;
       // win logic
-      if(newPlace >= boardArr.length){
+      if(newPlace >= boardArr.length - 1){
         $player.appendTo($('.square').eq(boardArr.length - 1));
         console.log('Player 1 wins!');
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', true);
       } else if(newPlace > 0 && newPlace === prevPlace2){
         // console.log('same spot');
-        const shallWeDual = prompt('You\'ve caught up to your opponent. You can knock down a display to try to slow them down, or nod and carry on. What will you do?', 'knock display down / nod');
-        if (shallWeDual === 'knock display down'){
-          console.log('knocked down display');
-        } else {
-          console.log('what a whimp');
-        }
+        functions.battle();
+      } else {
+        $rollBtn.prop('disabled', true);
+        $rollBtn2.prop('disabled', false);
       }
     },
 
@@ -122,16 +155,23 @@ $(()=>{
       functions.writeRoll2();
       newPlace2 = prevPlace2 + randNum2;
       // move the player to the new square (previous location plus random number rolled)
-      $player2.appendTo($('.square').eq(newPlace2));
+      // setTimeout gives time for the rolled number to show before moving
+      setTimeout(function(){
+        $player2.appendTo($('.square').eq(newPlace2));
+      }, 800);
       prevPlace2 = newPlace2;
       // win logic
-      if(newPlace2 >= boardArr.length){
+      if(newPlace2 >= boardArr.length - 1){
         $player2.appendTo($('.square').eq(boardArr.length - 1));
         console.log('Player 2 wins!');
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', true);
       } else if(newPlace2 > 0 && newPlace2 === prevPlace){
-        console.log('same spot 2');
+        // console.log('same spot 2');
+        functions.battle2();
+      } else {
+        $rollBtn2.prop('disabled', true);
+        $rollBtn.prop('disabled', false);
       }
     },
 
