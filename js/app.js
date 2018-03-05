@@ -13,6 +13,8 @@ $(()=>{
   const $rollBtn = $('#roll').prop('disabled', true);
   const $resetBtn = $('#reset').prop('disabled', true);
   const $rollBtn2 = $('#roll2').prop('disabled', true);
+  let newPlace;
+  let newPlace2;
   let randNum;
   let randNum2;
   let prevPlace = 0;
@@ -66,6 +68,22 @@ $(()=>{
       $('<h3>').text(randNum2).appendTo($('#roll-num2'));
     },
 
+    // movePlayer: ()=>{
+    //   const $clone = $player.clone(true).appendTo($('.square').eq(newPlace));
+    //   $clone.hide();
+    //   $player.css('position', 'absolute').animate(()=>{
+    //     $player.hide('slow');
+    //     $clone.show('slow');
+    //   })
+    // },
+
+    // movePlayer: ()=>{
+    //   for(i = 1; i < randNum; i++){
+    //     $player.clone(true).css('display', 'none').appendTo($('.square').eq(prevPlace + i)).show('slow').hide('slow').delay(2000)
+    //   }
+    //   $player.appendTo($('.square').eq(newPlace));
+    // },
+
     battle: ()=>{
 
     },
@@ -75,9 +93,10 @@ $(()=>{
       // generate random number between 1 and 5
       randNum = Math.floor(Math.random() * 5 + 1);
       functions.writeRoll();
-      let newPlace = prevPlace + randNum;
+      newPlace = prevPlace + randNum;
       // move the player to the new square (previous location plus random number rolled)
       $player.appendTo($('.square').eq(newPlace));
+      // functions.movePlayer();
       prevPlace = newPlace;
       // win logic
       if(newPlace >= boardArr.length){
@@ -86,7 +105,13 @@ $(()=>{
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', true);
       } else if(newPlace > 0 && newPlace === prevPlace2){
-        console.log('same spot');
+        // console.log('same spot');
+        const shallWeDual = prompt('You\'ve caught up to your opponent. You can knock down a display to try to slow them down, or nod and carry on. What will you do?', 'knock display down / nod');
+        if (shallWeDual === 'knock display down'){
+          console.log('knocked down display');
+        } else {
+          console.log('what a whimp');
+        }
       }
     },
 
@@ -95,7 +120,7 @@ $(()=>{
       // generate random number between 1 and 5
       randNum2 = Math.floor(Math.random() * 5 + 1);
       functions.writeRoll2();
-      let newPlace2 = prevPlace2 + randNum2;
+      newPlace2 = prevPlace2 + randNum2;
       // move the player to the new square (previous location plus random number rolled)
       $player2.appendTo($('.square').eq(newPlace2));
       prevPlace2 = newPlace2;
