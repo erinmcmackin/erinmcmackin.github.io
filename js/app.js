@@ -6,6 +6,7 @@ $(()=>{
   const $square = $('.square');
   const $player = $('<img>').attr('src', 'https://png.pngtree.com/element_pic/17/01/04/4a21813fa12293173cb5fbfbc0157339.jpg').addClass('player');
   const $player2 = $('<img>').attr('src', 'http://i.dailymail.co.uk/i/pix/2014/12/19/24297E7B00000578-0-image-a-11_1419023832559.jpg').addClass('player');
+  const $closeLoadBtn = $('#close-load-btn');
   const $instructionsBtn = $('#instructions');
   const $closeInstBtn = $('#closeInstBtn');
   const $startBtn = $('#start');
@@ -26,12 +27,16 @@ $(()=>{
 
   const functions = {
 
+    onLoadClose: ()=>{
+      $('#modal-load-bkgrd').css('display', 'none');
+    },
+
     instructionsOpen: ()=>{
-      $('#modal-bkgrd').css('display', 'block');
+      $('#modal-inst-bkgrd').css('display', 'block');
     },
 
     instructionsClose: ()=>{
-      $('#modal-bkgrd').css('display', 'none');
+      $('#modal-inst-bkgrd').css('display', 'none');
     },
 
     start: ()=>{
@@ -86,6 +91,7 @@ $(()=>{
 
   createGameBoard();
 
+  $closeLoadBtn.on('click', functions.onLoadClose);
   $instructionsBtn.on('click', functions.instructionsOpen);
   $closeInstBtn.on('click', functions.instructionsClose);
   $startBtn.on('click', functions.start);
