@@ -43,6 +43,11 @@ $(()=>{
     // console.log(boardArr);
   };
 
+  // ===========
+  // FUNCTIONS
+  // ===========
+
+
   const functions = {
 
     onLoadClose: ()=>{

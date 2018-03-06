@@ -90,6 +90,16 @@ h1 {
   padding: 0;
 }
 
+.player1 {
+  /* background: url('https://png.pngtree.com/element_pic/17/01/04/4a21813fa12293173cb5fbfbc0157339.jpg'); */
+  background-color: thistle;
+}
+
+.player2 {
+  /* background: url('https://vignette.wikia.nocookie.net/disney/images/a/a5/Bruce-FN.png/revision/latest?cb=20131111065729'); */
+  background-color: orchid;
+}
+
 .player {
   /* flex-shrink: 0.1; */
   /* height: 100%; */
