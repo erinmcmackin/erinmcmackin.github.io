@@ -13,6 +13,20 @@ $(()=>{
   const $rollBtn = $('#roll').prop('disabled', true);
   const $resetBtn = $('#reset').prop('disabled', true);
   const $rollBtn2 = $('#roll2').prop('disabled', true);
+  const delayArr = [
+    {
+      delayName: 'banana',
+      delayHit: 1
+    },
+    {
+      delayName: 'family blocking aisle',
+      delayHit: 3
+    },
+    {
+      delayName: 'clerk stocking shelves',
+      delayHit: 2
+    }
+  ];
   let newPlace;
   let newPlace2;
   let randNum;
@@ -71,25 +85,32 @@ $(()=>{
 
     writeRoll: ()=>{
       // display the number rolled by Player 1 in the player's console
-      $('#roll-num').empty(); $('<h3>').text(randNum).appendTo($('#roll-num'));
+      // $('#roll-num').empty();
+      $('<h3>').text(randNum).appendTo($('#roll-num'));
     },
 
     writeRoll2: ()=>{
       // display the number rolle by Player 2 in the player's console
-      $('#roll-num2').empty();
+      // $('#roll-num2').empty();
       $('<h3>').text(randNum2).appendTo($('#roll-num2'));
     },
 
-    bananaPlayer1: ()=>{
-      console.log('BANANA 1');
-      $player.appendTo($('.square').eq(newPlace - 2));
+    delayPlayer1: ()=>{
+      const randI = Math.floor(Math.random() * 2);
+      console.log(delayArr[randI].delayName);
+      alert('Move back ' + delayArr[randI].delayHit);
+      newPlace = newPlace - delayArr[randI].delayHit;
+      $player.appendTo($('.square').eq(newPlace));
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', false);
     },
 
-    bananaPlayer2: ()=>{
-      console.log('BANANA 2');
-      $player2.appendTo($('.square').eq(newPlace2 - 2));
+    delayPlayer2: ()=>{
+      const randI = Math.floor(Math.random() * 2);
+      console.log(delayArr[randI].delayName);
+      alert('Move back ' + delayArr[randI].delayHit);
+      newPlace2 = newPlace2 - delayArr[randI].delayHit;
+      $player2.appendTo($('.square').eq(newPlace2));
       $rollBtn2.prop('disabled', true);
       $rollBtn.prop('disabled', false);
     },
@@ -106,9 +127,13 @@ $(()=>{
           $rollBtn2.prop('disabled', true);
         } else {
           console.log('They were too fast to trip!');
+          $rollBtn.prop('disabled', true);
+          $rollBtn2.prop('disabled', false);
         }
       } else {
         console.log('what a whimp');
+        $rollBtn.prop('disabled', true);
+        $rollBtn2.prop('disabled', false);
       }
     },
 
@@ -124,9 +149,13 @@ $(()=>{
           $rollBtn2.prop('disabled', false);
         } else {
           console.log('They were too fast to trip!');
+          $rollBtn.prop('disabled', false);
+          $rollBtn2.prop('disabled', true);
         }
       } else {
         console.log('what a whimp');
+        $rollBtn.prop('disabled', false);
+        $rollBtn2.prop('disabled', true);
       }
     },
 
@@ -149,8 +178,8 @@ $(()=>{
       } else if(newPlace > 0 && newPlace === prevPlace2){
         // console.log('same spot');
         functions.battle();
-      } else if (newPlace === 12 || newPlace === 21 || newPlace === 28){
-        functions.bananaPlayer1();
+      } else if (newPlace2 % 3 === 0 || newPlace2 % 5 === 0){
+        setTimeout(functions.delayPlayer1(), 800);
       }else {
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', false);
@@ -175,8 +204,8 @@ $(()=>{
       } else if(newPlace2 > 0 && newPlace2 === prevPlace){
         // console.log('same spot 2');
         functions.battle2();
-      } else if (newPlace2 === 12 || newPlace2 === 21 || newPlace2 === 28){
-        functions.bananaPlayer2();
+      } else if (newPlace2 % 3 === 0 || newPlace2 % 5 === 0){
+        setTimeout(functions.delayPlayer2(), 800);
       } else {
         $rollBtn2.prop('disabled', true);
         $rollBtn.prop('disabled', false);
