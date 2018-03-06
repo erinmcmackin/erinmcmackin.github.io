@@ -90,13 +90,13 @@ $(()=>{
 
     writeRoll: ()=>{
       // display the number rolled by Player 1 in the player's console
-      // $('#roll-num').empty();
+      $('#roll-num').empty();
       $('<h3>').text(randNum).appendTo($('#roll-num'));
     },
 
     writeRoll2: ()=>{
       // display the number rolle by Player 2 in the player's console
-      // $('#roll-num2').empty();
+      $('#roll-num2').empty();
       $('<h3>').text(randNum2).appendTo($('#roll-num2'));
     },
 
@@ -164,19 +164,7 @@ $(()=>{
       }
     },
 
-    // roll a random number for Player 1
-    roll: ()=>{
-      // generate random number between 1 and 5
-      randNum = Math.floor(Math.random() * 5 + 1);
-      functions.writeRoll();
-      newPlace = prevPlace + randNum;
-      // move the player to the new square (previous location plus random number rolled)
-      // setTimeout gives time for the rolled number to show before moving
-      setTimeout(function(){
-        $player.appendTo($('.square').eq(newPlace));
-      }, 800);
-      // functions.movePlayer();
-      prevPlace = newPlace;
+    ifStatements: ()=>{
       // win logic
       if(newPlace >= boardArr.length - 1){
         functions.winPlayer1();
@@ -191,18 +179,7 @@ $(()=>{
       }
     },
 
-    // roll a random number for Player 2
-    roll2: ()=>{
-      // generate random number between 1 and 5
-      randNum2 = Math.floor(Math.random() * 5 + 1);
-      functions.writeRoll2();
-      newPlace2 = prevPlace2 + randNum2;
-      // move the player to the new square (previous location plus random number rolled)
-      // setTimeout gives time for the rolled number to show before moving
-      setTimeout(function(){
-        $player2.appendTo($('.square').eq(newPlace2));
-      }, 800);
-      prevPlace2 = newPlace2;
+    ifStatements2: ()=>{
       // win logic
       if(newPlace2 >= boardArr.length - 1){
         functions.winPlayer2();
@@ -215,6 +192,41 @@ $(()=>{
         $rollBtn2.prop('disabled', true);
         $rollBtn.prop('disabled', false);
       }
+    },
+
+    // roll a random number for Player 1
+    roll: ()=>{
+      // generate random number between 1 and 5
+      randNum = Math.floor(Math.random() * 5 + 1);
+      functions.writeRoll();
+      newPlace = prevPlace + randNum;
+      // move the player to the new square (previous location plus random number rolled)
+      // setTimeout gives time for the rolled number to show before moving
+      setTimeout(function(){
+        $player.appendTo($('.square').eq(newPlace));
+      }, 600);
+      // functions.movePlayer();
+      prevPlace = newPlace;
+      setTimeout(function(){
+        functions.ifStatements();
+      }, 1000);
+    },
+
+    // roll a random number for Player 2
+    roll2: ()=>{
+      // generate random number between 1 and 5
+      randNum2 = Math.floor(Math.random() * 5 + 1);
+      functions.writeRoll2();
+      newPlace2 = prevPlace2 + randNum2;
+      // move the player to the new square (previous location plus random number rolled)
+      // setTimeout gives time for the rolled number to show before moving
+      setTimeout(function(){
+        $player2.appendTo($('.square').eq(newPlace2));
+      }, 600);
+      prevPlace2 = newPlace2;
+      setTimeout(function(){
+        functions.ifStatements2();
+      }, 1000);
     },
 
     resetGame: ()=>{
