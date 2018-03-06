@@ -20,8 +20,6 @@ $(()=>{
   let prevPlace = 0;
   let prevPlace2 = 0;
 
-
-
   const createGameBoard = ()=>{
     // creates the board divs
     for(i = 0; i <= 49; i++){
@@ -57,6 +55,20 @@ $(()=>{
       $player2.appendTo($('.square').eq(0));
     },
 
+    winPlayer1: ()=>{
+      $player.appendTo($('.square').eq(boardArr.length - 1));
+      console.log('Player 1 wins!');
+      $rollBtn.prop('disabled', true);
+      $rollBtn2.prop('disabled', true);
+    },
+
+    winPlayer2: ()=>{
+      $player2.appendTo($('.square').eq(boardArr.length - 1));
+      console.log('Player 2 wins!');
+      $rollBtn.prop('disabled', true);
+      $rollBtn2.prop('disabled', true);
+    },
+
     writeRoll: ()=>{
       // display the number rolled by Player 1 in the player's console
       $('#roll-num').empty(); $('<h3>').text(randNum).appendTo($('#roll-num'));
@@ -68,21 +80,19 @@ $(()=>{
       $('<h3>').text(randNum2).appendTo($('#roll-num2'));
     },
 
-    // movePlayer: ()=>{
-    //   const $clone = $player.clone(true).appendTo($('.square').eq(newPlace));
-    //   $clone.hide();
-    //   $player.css('position', 'absolute').animate(()=>{
-    //     $player.hide('slow');
-    //     $clone.show('slow');
-    //   })
-    // },
+    bananaPlayer1: ()=>{
+      console.log('BANANA 1');
+      $player.appendTo($('.square').eq(newPlace - 2));
+      $rollBtn.prop('disabled', true);
+      $rollBtn2.prop('disabled', false);
+    },
 
-    // movePlayer: ()=>{
-    //   for(i = 1; i < randNum; i++){
-    //     $player.clone(true).css('display', 'none').appendTo($('.square').eq(prevPlace + i)).show('slow').hide('slow').delay(2000)
-    //   }
-    //   $player.appendTo($('.square').eq(newPlace));
-    // },
+    bananaPlayer2: ()=>{
+      console.log('BANANA 2');
+      $player2.appendTo($('.square').eq(newPlace2 - 2));
+      $rollBtn2.prop('disabled', true);
+      $rollBtn.prop('disabled', false);
+    },
 
     battle: ()=>{
       const shallWeDual = prompt('You\'ve caught up to Player 2. You can knock down a display to try to slow them down, or nod and carry on. What will you do?', 'knock display down / nod');
@@ -135,14 +145,13 @@ $(()=>{
       prevPlace = newPlace;
       // win logic
       if(newPlace >= boardArr.length - 1){
-        $player.appendTo($('.square').eq(boardArr.length - 1));
-        console.log('Player 1 wins!');
-        $rollBtn.prop('disabled', true);
-        $rollBtn2.prop('disabled', true);
+        functions.winPlayer1();
       } else if(newPlace > 0 && newPlace === prevPlace2){
         // console.log('same spot');
         functions.battle();
-      } else {
+      } else if (newPlace === 12 || newPlace === 21 || newPlace === 28){
+        functions.bananaPlayer1();
+      }else {
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', false);
       }
@@ -162,13 +171,12 @@ $(()=>{
       prevPlace2 = newPlace2;
       // win logic
       if(newPlace2 >= boardArr.length - 1){
-        $player2.appendTo($('.square').eq(boardArr.length - 1));
-        console.log('Player 2 wins!');
-        $rollBtn.prop('disabled', true);
-        $rollBtn2.prop('disabled', true);
+        functions.winPlayer2();
       } else if(newPlace2 > 0 && newPlace2 === prevPlace){
         // console.log('same spot 2');
         functions.battle2();
+      } else if (newPlace2 === 12 || newPlace2 === 21 || newPlace2 === 28){
+        functions.bananaPlayer2();
       } else {
         $rollBtn2.prop('disabled', true);
         $rollBtn.prop('disabled', false);

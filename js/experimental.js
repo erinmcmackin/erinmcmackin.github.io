@@ -34,3 +34,20 @@ $(()=>{
     console.log(boardArr);
 
 });
+
+
+    // movePlayer: ()=>{
+    //   const $clone = $player.clone(true).appendTo($('.square').eq(newPlace));
+    //   $clone.hide();
+    //   $player.css('position', 'absolute').animate(()=>{
+    //     $player.hide('slow');
+    //     $clone.show('slow');
+    //   })
+    // },
+
+    // movePlayer: ()=>{
+    //   for(i = 1; i < randNum; i++){
+    //     $player.clone(true).css('display', 'none').appendTo($('.square').eq(prevPlace + i)).show('slow').hide('slow').delay(2000)
+    //   }
+    //   $player.appendTo($('.square').eq(newPlace));
+    // },
