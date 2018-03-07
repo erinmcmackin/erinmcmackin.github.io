@@ -18,7 +18,7 @@ h1 {
   margin: 10px auto 0;
   font-size: 40px;
   font-weight: bolder;
-  color: #400000;
+  color: rgb(49, 149, 95);
 }
 
 h2 {
@@ -26,6 +26,7 @@ h2 {
   font-weight: bolder;
   text-align: center;
   margin: 5px auto;
+  color: rgb(49, 149, 95);
 }
 
 p {
@@ -111,6 +112,7 @@ p {
   font-family: 'Mina', sans-serif;
   color: #400000;
   padding: 5px 20px;
+  border-radius: 5px;
 }
 
 #roll-num, #roll-num2 {
@@ -119,14 +121,24 @@ p {
   background-color: whitesmoke;
   width: 80px;
   height: 80px;
-  /* align-items: center;
-  align-content: center;
-  justify-content: center; */
+}
+
+#roll, #roll-num, #roll-num p {
+  background-color: black;
+  color: white;
+}
+
+#roll2, #roll-num2, #roll-num2 p {
+  background-color: white;
+  color: black;
+}
+
+#roll2 {
+  border-color: black;
 }
 
 #roll-num p, #roll-num2 p {
   font-size: 40px;
-  color: #400000;
   /* the following centers the p */
   vertical-align: middle;
   display: table-cell;
@@ -173,8 +185,10 @@ p {
 .modal-btn {
   font-family: 'Mina', sans-serif;
   font-size: 20px;
+  color: rgb(49, 149, 95);
+  background-color: whitesmoke;
   font-weight: bolder;
-  border: 1px solid tomato;
+  border: 1px solid rgb(49, 149, 95);;
   width: 300px;
   margin-top: 5px;
   border-radius: 5px;
