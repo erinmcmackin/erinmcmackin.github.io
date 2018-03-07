@@ -6,6 +6,7 @@ $(()=>{
   const $modalBkgrd = $('#modal-bkgrd');
   const $modalWin = $('#modal-win');
   const $modalDelay = $('#modal-delay');
+  const $modalPropel = $('#modal-propel');
   const $square = $('.square');
   const $player = $('<img>').attr('src', 'css/images/shopping-cart-hi.png').addClass('player');
   const $player2 = $('<img>').attr('src', 'css/images/shopping-cart-wh.png').addClass('player');
@@ -19,15 +20,15 @@ $(()=>{
   const $playAgainBtn = $('#play-again');
   const delayArr = [
     {
-      delayName: 'slips on spilled milk.',
+      delayName: ' slipped on spilled milk.',
       delayHit: 1
     },
     {
-      delayName: 'trapped by family blocking aisle.',
+      delayName: '\'re trapped by a family blocking the aisle.',
       delayHit: 3
     },
     {
-      delayName: 'blocked by clerk stocking shelves.',
+      delayName: '\'re blocked by a clerk stocking shelves.',
       delayHit: 2
     }
   ];
@@ -45,6 +46,7 @@ $(()=>{
       boardArr.push($div);
     };
     $('.square').eq(boardArr.length - 1).css('background', 'url("css/images/cake-transp.png")').css('background-size', 'cover');
+    $('.square').eq(0).css('background', 'url("css/images/doors.png")').css('background-size', 'cover');
     // console.log(boardArr);
   };
 
@@ -57,6 +59,7 @@ $(()=>{
 
     displayModalBkgrd: ()=>{
       $modalBkgrd.css('display', 'flex');
+      $modalBkgrd.children().hide();
     },
 
     hideModalBkgrd: ()=>{
@@ -129,7 +132,7 @@ $(()=>{
       const randI = Math.floor(Math.random() * 3);
       // console.log(delayArr[randI].delayName);
       // alert('Move back ' + delayArr[randI].delayHit);
-      $modalDelay.find('h2').text('Player 1 ' +  delayArr[randI].delayName);
+      $modalDelay.find('h2').text('You' +  delayArr[randI].delayName);
       $modalDelay.find('p').text('Move back ' + delayArr[randI].delayHit + ' spots.');
       functions.displayModalBkgrd();
       $modalDelay.css('display', 'flex');
@@ -144,7 +147,7 @@ $(()=>{
       const randI = Math.floor(Math.random() * 3);
       // console.log(delayArr[randI].delayName);
       // alert('Move back ' + delayArr[randI].delayHit);
-      $modalDelay.find('h2').text('Player 2 ' +  delayArr[randI].delayName);
+      $modalDelay.find('h2').text('You' +  delayArr[randI].delayName);
       $modalDelay.find('p').text('Move back ' + delayArr[randI].delayHit + ' spots.');
       functions.displayModalBkgrd();
       $modalDelay.css('display', 'flex');
@@ -156,7 +159,12 @@ $(()=>{
     },
 
     propelPlayer1: ()=>{
-      console.log('You found the Red Bull aisle! Move forward an extra 3 spots!');
+      // console.log('You found the Red Bull aisle! Move forward an extra 3 spots!');
+      $modalPropel.find('h2').text('You found the energy drink aisle!');
+      $modalPropel.find('p').text('Sprint forward 3 spots.');
+      functions.displayModalBkgrd();
+      $modalPropel.css('display', 'flex');
+      setTimeout(functions.hideModalBkgrd, 2000);
       newPlace += 3;
       $player.appendTo($('.square').eq(newPlace));
       $rollBtn.prop('disabled', true);
@@ -164,7 +172,12 @@ $(()=>{
     },
 
     propelPlayer2: ()=>{
-      console.log('You found the Red Bull aisle! Move forward an extra 3 spots!');
+      // console.log('You found the Red Bull aisle! Move forward an extra 3 spots!');
+      $modalPropel.find('h2').text('You found the energy drink aisle!');
+      $modalPropel.find('p').text('Sprint forward 3 spots.');
+      functions.displayModalBkgrd();
+      $modalPropel.css('display', 'flex');
+      setTimeout(functions.hideModalBkgrd, 2000);
       newPlace2 += 3;
       $player2.appendTo($('.square').eq(newPlace2));
       $rollBtn2.prop('disabled', true);
