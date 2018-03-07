@@ -41,6 +41,7 @@ $(()=>{
       const $div = $('<div>').attr('class', 'square').attr('id', i).appendTo('#game-board');
       boardArr.push($div);
     };
+    $('.square').eq(boardArr.length - 1).css('background', 'url("css/images/cake-transp.png")').css('background-size', 'cover');
     // console.log(boardArr);
   };
 
@@ -74,6 +75,7 @@ $(()=>{
 
     start: ()=>{
       // starting state for gameboard
+      $startBtn.prop('disabled', true);
       $rollBtn.prop('disabled', false);
       $rollBtn2.prop('disabled', false);
       $resetBtn.prop('disabled', false);
@@ -262,6 +264,7 @@ $(()=>{
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', true);
       $resetBtn.prop('disabled', true);
+      $startBtn.prop('disabled', false);
     }
 
   };

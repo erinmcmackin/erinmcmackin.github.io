@@ -1,23 +1,13 @@
-/* body {
-  background-color: thistle;
-} */
-
-/* * {
-  border: 1px solid gold;
-} */
-
 /* getting the background and gameboard to expand to the size of the window */
 html, body {
   height: 100%;
   margin: 0;
   font-family: 'Mina', sans-serif;
+  color: #400000;
 }
 
-/* header {
-  background-color: #FFC342;
-} */
 body {
-  background: url('http://www.forbesindia.com/fbimages/900x600/proportional/jpeg/blog/wp-content/uploads/2017/02/supermarket.jpg');
+  background: url('images/supermarket.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -25,11 +15,10 @@ body {
 
 h1 {
   text-align: center;
-  /* font-family: Helvetica, arial, sans-serif; */
-  /* font-family: 'Mina', sans-serif; */
   margin: 10px auto 0;
   font-size: 40px;
   font-weight: bolder;
+  color: #400000;
 }
 
 h2 {
@@ -46,8 +35,6 @@ p {
 
 #main {
   display: flex;
-  /* height: 100%; */
-  /* background-color: thistle; */
   justify-content: center;
   align-items: center;
   overflow: scroll;
@@ -56,15 +43,34 @@ p {
 #game-board {
   display: flex;
   margin-top: 10px;
-  /* width: 80%;
-  height: 100%; */
+  /* space from the aside */
+  margin-right: 5px;
   width: 600px;
   height: 700px;
   flex-flow: row wrap;
-  /* align-items: center; */
-  /* max-width: 500px;
-  min-width: 400px; */
-  border: 0.5px outset #E07053;
+  border: 0.5px outset whitesmoke;
+  border-radius: 5px;
+  background-color: rgba(232, 183, 82, 0.7);
+}
+
+.square {
+  display: flex;
+  width: 119px;
+  height: 116px;
+  /* border: 0.5px outset #E07053; */
+  /* border: 0.5px inset #DDC3B6; */
+  border: 0.5px inset whitesmoke;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.player {
+  display: flex;
+  height: 50px;
+  padding: 0;
+  margin: 0;
 }
 
 #aside {
@@ -72,11 +78,14 @@ p {
   flex-direction: column;
   margin-top: 10px;
   width: 15%;
-  /* height: 100%; */
   height: 700px;
-  background-color: oldlace;
+  /* background-color: rgba(202, 75, 34, 0.7); */
+  background-color: rgba(64, 0, 0, 0.7);
+  border: 0.5px outset whitesmoke;
+  border-radius: 5px;
   max-width: 100px;
   min-width: 80px;
+  margin-left: 5px;
 }
 
 #controls{
@@ -111,7 +120,7 @@ p {
 	background-color: white;
 	height: 350px;
 	width: 350px;
-	border-radius: 2px;
+	border-radius: 5px;
   padding: 10px;
 
 	margin: 150px auto;
@@ -129,29 +138,5 @@ p {
   border: 1px solid tomato;
   width: 300px;
   margin-top: 5px;
-}
-
-.square {
-  display: flex;
-  width: 119px;
-  /* height: 10%; */
-  height: 116px;
-  background-color: rgba(224, 161, 83, 0.7);
-  border: 0.5px outset #E07053;
-  margin: 0;
-  padding: 0;
-  justify-content: space-around;
-  align-items: center;
-}
-
-
-.player {
-  /* flex-shrink: 0.1; */
-  /* height: 100%; */
-  /* max-width: 100%;
-  max-height: 100%; */
-  display: flex;
-  height: 50px;
-  padding: 0;
-  margin: 0;
+  border-radius: 5px;
 }
