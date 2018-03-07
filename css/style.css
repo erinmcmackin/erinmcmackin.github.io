@@ -2,26 +2,52 @@
   background-color: thistle;
 } */
 
-* {
+/* * {
   border: 1px solid gold;
-}
+} */
 
+/* getting the background and gameboard to expand to the size of the window */
 html, body {
   height: 100%;
   margin: 0;
+  font-family: 'Mina', sans-serif;
+}
+
+/* header {
+  background-color: #FFC342;
+} */
+body {
+  background: url('http://www.forbesindia.com/fbimages/900x600/proportional/jpeg/blog/wp-content/uploads/2017/02/supermarket.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 h1 {
   text-align: center;
-  font-family: Helvetica, arial, sans-serif;
+  /* font-family: Helvetica, arial, sans-serif; */
+  /* font-family: 'Mina', sans-serif; */
   margin: 10px auto 0;
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+  margin: 5px auto;
+}
+
+p {
+  font-size: 20px;
+  margin: 5px auto;
 }
 
 #main {
   display: flex;
-  height: 100%;
-  margin: 0;
-  background-color: thistle;
+  /* height: 100%; */
+  /* background-color: thistle; */
   justify-content: center;
   align-items: center;
   overflow: scroll;
@@ -29,20 +55,25 @@ h1 {
 
 #game-board {
   display: flex;
-  width: 80%;
-  height: 90%;
-  background-color: lemonchiffon;
+  margin-top: 10px;
+  /* width: 80%;
+  height: 100%; */
+  width: 600px;
+  height: 700px;
   flex-flow: row wrap;
   /* align-items: center; */
-  max-width: 500px;
-  min-width: 400px;
+  /* max-width: 500px;
+  min-width: 400px; */
+  border: 0.5px outset #E07053;
 }
 
 #aside {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
   width: 15%;
-  height: 90%;
+  /* height: 100%; */
+  height: 700px;
   background-color: oldlace;
   max-width: 100px;
   min-width: 80px;
@@ -56,7 +87,9 @@ h1 {
   flex-grow: 1;
 }
 
-#modal-load-bkgrd, #modal-inst-bkgrd {
+/* #modal-load-bkgrd, #modal-inst-bkgrd  */
+#modal-bkgrd {
+  display: flex;
 	background-color: rgba(0,0,0,.4);
 	position: fixed;
 	top: 0;
@@ -67,44 +100,58 @@ h1 {
 	overflow: auto;
 }
 
-#modal-inst-bkgrd {
+/* #modal-inst-bkgrd {
   	display: none;
-}
+} */
 
-#modal-on-load, #modal-instructions {
+#modal-on-load, #modal-instructions, #modal-win, #modal-delay, #modal-propel, #modal-battle, #modal-battle-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 	background-color: white;
 	height: 350px;
 	width: 350px;
 	border-radius: 2px;
+  padding: 10px;
 
 	margin: 150px auto;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
+#modal-instructions, #modal-win, #modal-delay, #modal-propel, #modal-battle, #modal-battle-result {
+  display: none;
+}
+
+.modal-btn {
+  font-family: 'Mina', sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
+  border: 1px solid tomato;
+  width: 300px;
+  margin-top: 5px;
+}
+
 .square {
-  width: 19%;
-  /* height: 20%; */
-  flex-grow: 1;
-  background-color: whitesmoke;
+  display: flex;
+  width: 119px;
+  /* height: 10%; */
+  height: 116px;
+  background-color: rgba(224, 161, 83, 0.7);
+  border: 0.5px outset #E07053;
   margin: 0;
   padding: 0;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.player1 {
-  /* background: url('https://png.pngtree.com/element_pic/17/01/04/4a21813fa12293173cb5fbfbc0157339.jpg'); */
-  background-color: thistle;
-}
-
-.player2 {
-  /* background: url('https://vignette.wikia.nocookie.net/disney/images/a/a5/Bruce-FN.png/revision/latest?cb=20131111065729'); */
-  background-color: orchid;
-}
 
 .player {
   /* flex-shrink: 0.1; */
   /* height: 100%; */
-  max-width: 100%;
-  max-height: 100%;
+  /* max-width: 100%;
+  max-height: 100%; */
+  display: flex;
+  height: 50px;
   padding: 0;
   margin: 0;
 }

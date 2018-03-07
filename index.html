@@ -5,25 +5,49 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
     <link rel="stylesheet" href="css/style.css">
-    <title>Forest Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Mina:400,700" rel="stylesheet">
+    <link rel="icon" href="http://www.cakewalla.com/skin/frontend/intenso/default/images/favicon.png">
+    <title>Cake Clash</title>
   </head>
   <body>
     <header>
-      <h1>Test 5</h1>
+      <h1>Cake Clash</h1>
     </header>
     <div id="main">
-      <div id="modal-load-bkgrd">
+      <div id="modal-bkgrd">
         <div id="modal-on-load">
-          <h2>Oh no!</h1>
-          <p>You're late to the party and there's only one cake left. You make eye contact with another shopper. That's when you realize you're both there for the cake! Race them to the sugary treat and be the life of the party!</p>
-          <button type="button" id="close-load-btn">Run!</button>
+          <h2>Oh no!</h2>
+          <p>You're late to the party and there's only one cake left at the store. You make eye contact with another shopper and realize you're both there for cake!</p>
+          <p>Race your opponent to the sugary treat and be the life of the party!</p>
+          <button type="button" id="close-load-btn" class="modal-btn">Run!</button>
         </div>
-      </div>
-      <div id="modal-inst-bkgrd">
         <div id="modal-instructions">
-          <h2>Instructions</h1>
+          <h2>Instructions</h2>
           <p>This is how to play the game</p>
-          <button type="button" id="closeInstBtn">Got It</button>
+          <button type="button" id="close-inst-btn" class="modal-btn">Got It!</button>
+        </div>
+        <div id="modal-win">
+          <h2>Player x Wins!</h2>
+          <p>Some stuff about winning</p>
+          <button type="button" id="play-again" class="modal-btn">Play Again?</button>
+        </div>
+        <div id="modal-delay">
+          <h2>Delay goes here</h2>
+          <p>Move back however many</p>
+        </div>
+        <div id="modal-propel">
+          <h2>You found the Red Bull aisle!</h2>
+          <p>Chug and sprint forward 3 spots.</p>
+        </div>
+        <div id="modal-battle">
+          <h2>You caught up to your opponent!</h2>
+          <p>You can knock down a display to try to slow them down, or smile awkwardly. What will you do?</p>
+          <button type="button" id="knock-down" class="modal-btn">Knock Down Display</button>
+          <button type="button" id="smile" class="modal-btn">Smile Awkwardly</button>
+        </div>
+        <div id="modal-battle-result">
+          <h2>Result</h2>
+          <p>What happens next</p>
         </div>
       </div>
       <div id="game-board">

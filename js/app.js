@@ -3,12 +3,13 @@
 $(()=>{
 
   const boardArr = [];
+  const $modalBkgrd = $('#modal-bkgrd');
   const $square = $('.square');
-  const $player = $('<img>').attr('src', 'https://png.pngtree.com/element_pic/17/01/04/4a21813fa12293173cb5fbfbc0157339.jpg').addClass('player');
-  const $player2 = $('<img>').attr('src', 'https://vignette.wikia.nocookie.net/disney/images/a/a5/Bruce-FN.png/revision/latest?cb=20131111065729').addClass('player');
+  const $player = $('<img>').attr('src', 'css/images/shopping-cart-hi.png').addClass('player');
+  const $player2 = $('<img>').attr('src', 'css/images/shopping-cart-md.png').addClass('player');
   const $closeLoadBtn = $('#close-load-btn');
   const $instructionsBtn = $('#instructions');
-  const $closeInstBtn = $('#closeInstBtn');
+  const $closeInstBtn = $('#close-inst-btn');
   const $startBtn = $('#start');
   const $rollBtn = $('#roll').prop('disabled', true);
   const $resetBtn = $('#reset').prop('disabled', true);
@@ -36,7 +37,7 @@ $(()=>{
 
   const createGameBoard = ()=>{
     // creates the board divs
-    for(i = 0; i <= 49; i++){
+    for(i = 0; i <= 29; i++){
       const $div = $('<div>').attr('class', 'square').attr('id', i).appendTo('#game-board');
       boardArr.push($div);
     };
@@ -52,17 +53,23 @@ $(()=>{
 
     onLoadClose: ()=>{
       // closes the on laod modal
-      $('#modal-load-bkgrd').css('display', 'none');
+      // $('#modal-load-bkgrd').css('display', 'none');
+      $modalBkgrd.css('display', 'none');
+      $('#modal-on-load').css('display', 'none');
     },
 
     instructionsOpen: ()=>{
       // opens the instructions modal
-      $('#modal-inst-bkgrd').css('display', 'block');
+      // $('#modal-inst-bkgrd').css('display', 'block');
+      $modalBkgrd.css('display', 'flex');
+      $('#modal-instructions').css('display', 'flex');
     },
 
     instructionsClose: ()=>{
       // closes the instructions modal
-      $('#modal-inst-bkgrd').css('display', 'none');
+      // $('#modal-inst-bkgrd').css('display', 'none');
+      $modalBkgrd.css('display', 'none');
+      $('#modal-instructions').css('display', 'none');
     },
 
     start: ()=>{
@@ -189,7 +196,7 @@ $(()=>{
         functions.battle();
       } else if (newPlace % 5 === 0){
         setTimeout(functions.delayPlayer1(), 800);
-      } else if (newPlace === 18 || newPlace === 12 || newPlace === 23 || newPlace === 7){
+      } else if (newPlace === 18){
         setTimeout(functions.propelPlayer1(), 800);
       } else {
         $rollBtn.prop('disabled', true);
@@ -206,7 +213,7 @@ $(()=>{
         functions.battle2();
       } else if (newPlace2 % 5 === 0){
         setTimeout(functions.delayPlayer2(), 800);
-      } else if (newPlace2 === 18 || newPlace2 === 12 || newPlace2 === 23 || newPlace2 === 7){
+      } else if (newPlace2 === 18){
         setTimeout(functions.propelPlayer2(), 800);
       } else {
         $rollBtn2.prop('disabled', true);
