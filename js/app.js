@@ -120,6 +120,22 @@ $(()=>{
       $rollBtn.prop('disabled', false);
     },
 
+    propelPlayer1: ()=>{
+      console.log('You found the Red Bull aisle! Move forward an extra 3 spots!');
+      newPlace += 3;
+      $player.appendTo($('.square').eq(newPlace));
+      $rollBtn.prop('disabled', true);
+      $rollBtn2.prop('disabled', false);
+    },
+
+    propelPlayer2: ()=>{
+      console.log('You found the Red Bull aisle! Move forward an extra 3 spots!');
+      newPlace2 += 3;
+      $player2.appendTo($('.square').eq(newPlace2));
+      $rollBtn2.prop('disabled', true);
+      $rollBtn.prop('disabled', false);
+    },
+
     battle: ()=>{
       const shallWeDual = prompt('You\'ve caught up to Player 2. You can knock down a display to try to slow them down, or nod and carry on. What will you do?', 'knock display down / nod');
       if (shallWeDual === 'knock display down'){
@@ -168,12 +184,14 @@ $(()=>{
       // win logic
       if(newPlace >= boardArr.length - 1){
         functions.winPlayer1();
-      } else if(newPlace > 0 && newPlace === prevPlace2){
-        // console.log('same spot');
+      } else if(newPlace > 0 && newPlace === newPlace2){
+        console.log('same spot');
         functions.battle();
-      } else if (newPlace2 % 3 === 0 || newPlace2 % 5 === 0){
+      } else if (newPlace % 5 === 0){
         setTimeout(functions.delayPlayer1(), 800);
-      }else {
+      } else if (newPlace === 18 || newPlace === 12 || newPlace === 23 || newPlace === 7){
+        setTimeout(functions.propelPlayer1(), 800);
+      } else {
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', false);
       }
@@ -183,11 +201,13 @@ $(()=>{
       // win logic
       if(newPlace2 >= boardArr.length - 1){
         functions.winPlayer2();
-      } else if(newPlace2 > 0 && newPlace2 === prevPlace){
-        // console.log('same spot 2');
+      } else if(newPlace2 > 0 && newPlace2 === newPlace){
+        console.log('same spot 2');
         functions.battle2();
-      } else if (newPlace2 % 3 === 0 || newPlace2 % 5 === 0){
+      } else if (newPlace2 % 5 === 0){
         setTimeout(functions.delayPlayer2(), 800);
+      } else if (newPlace2 === 18 || newPlace2 === 12 || newPlace2 === 23 || newPlace2 === 7){
+        setTimeout(functions.propelPlayer2(), 800);
       } else {
         $rollBtn2.prop('disabled', true);
         $rollBtn.prop('disabled', false);
