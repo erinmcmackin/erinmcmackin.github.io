@@ -33,6 +33,13 @@ p {
   margin: 5px auto;
 }
 
+#controls {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  height: 10%;
+}
+
 #main {
   display: flex;
   justify-content: center;
@@ -42,24 +49,24 @@ p {
 
 #game-board {
   display: flex;
-  margin-top: 10px;
-  /* space from the aside */
-  margin-right: 5px;
+  margin: 10px 5px;
   width: 600px;
   height: 700px;
   flex-flow: row wrap;
-  border: 0.5px outset whitesmoke;
+  /* border: 0.5px outset whitesmoke; */
+  border: 0.5px solid #EFBC7F;
   border-radius: 5px;
-  background-color: rgba(232, 183, 82, 0.7);
+  /* background-color: rgba(232, 183, 82, 0.7); */
+  /* background-color: rgba(193, 166, 149, 0.7); */
+  background-color: rgba(250, 218, 186, 0.7);
 }
 
 .square {
   display: flex;
   width: 119px;
   height: 116px;
-  /* border: 0.5px outset #E07053; */
-  /* border: 0.5px inset #DDC3B6; */
-  border: 0.5px inset whitesmoke;
+  /* border: 0.5px outset #EFBC7F; */
+  border: 0.5px outset rgba(250, 218, 186, 0.4);
   margin: 0;
   padding: 0;
   justify-content: space-around;
@@ -73,23 +80,36 @@ p {
   margin: 0;
 }
 
-#aside {
+#aside1 {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
   width: 15%;
   height: 700px;
   /* background-color: rgba(202, 75, 34, 0.7); */
-  background-color: rgba(64, 0, 0, 0.7);
-  border: 0.5px outset whitesmoke;
+  /* background-color: rgba(64, 0, 0, 0.7); */
+  background-color: rgba(49, 149, 95, 0.7);
+  border: 0.5px solid #FADABA;
+  border-radius: 5px;
+  max-width: 100px;
+  min-width: 80px;
+  margin-right: 5px;
+}
+
+#aside2 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 15%;
+  height: 700px;
+  /* background-color: rgba(202, 75, 34, 0.7); */
+  /* background-color: rgba(64, 0, 0, 0.7); */
+  background-color: rgba(49, 149, 95, 0.7);
+  border: 0.5px solid #FADABA;
   border-radius: 5px;
   max-width: 100px;
   min-width: 80px;
   margin-left: 5px;
-}
-
-#controls{
-  height: 10%;
 }
 
 #player-aside, #player2-aside {
