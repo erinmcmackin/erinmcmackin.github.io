@@ -4,10 +4,8 @@ html, body {
   margin: 0;
   font-family: 'Mina', sans-serif;
   color: #400000;
-}
-
-body {
   background: url('images/supermarket.jpg');
+  /* putting bkgrd image here to remove white space under */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -96,6 +94,11 @@ p {
 
 #aside1 img, #aside2 img {
   width: 80px;
+}
+
+#aside2 img {
+  /* flipping player 2 image in aside to face game board */
+  transform: scaleX(-1);
 }
 
 #aside2 h3 {
