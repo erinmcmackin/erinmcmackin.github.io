@@ -80,40 +80,23 @@ p {
   margin: 0;
 }
 
-#aside1 {
+#aside1, #aside2 {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
   width: 15%;
   height: 700px;
-  /* background-color: rgba(202, 75, 34, 0.7); */
-  /* background-color: rgba(64, 0, 0, 0.7); */
   background-color: rgba(49, 149, 95, 0.7);
-  border: 0.5px solid #FADABA;
-  border-radius: 5px;
   max-width: 100px;
   min-width: 80px;
+}
+
+#aside1 {
   margin-right: 5px;
 }
 
 #aside2 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  width: 15%;
-  height: 700px;
-  /* background-color: rgba(202, 75, 34, 0.7); */
-  /* background-color: rgba(64, 0, 0, 0.7); */
-  background-color: rgba(49, 149, 95, 0.7);
-  border: 0.5px solid #FADABA;
-  border-radius: 5px;
-  max-width: 100px;
-  min-width: 80px;
   margin-left: 5px;
-}
-
-#player-aside, #player2-aside {
-  flex-grow: 1;
 }
 
 /* #modal-load-bkgrd, #modal-inst-bkgrd  */

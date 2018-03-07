@@ -14,6 +14,7 @@ $(()=>{
   const $rollBtn = $('#roll').prop('disabled', true);
   const $resetBtn = $('#reset').prop('disabled', true);
   const $rollBtn2 = $('#roll2').prop('disabled', true);
+  const $playAgainBtn = $('#play-again');
   const delayArr = [
     {
       delayName: 'banana',
@@ -85,14 +86,20 @@ $(()=>{
 
     winPlayer1: ()=>{
       $player.appendTo($('.square').eq(boardArr.length - 1));
-      console.log('Player 1 wins!');
+      $('#modal-win').find('h2').text('Player 1 Wins!');
+      $('#modal-win').find('p').text('Player 1 takes the cake. Better luck next time, Player 2.');
+      $modalBkgrd.css('display', 'flex');
+      $('#modal-win').css('display', 'flex');
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', true);
     },
 
     winPlayer2: ()=>{
       $player2.appendTo($('.square').eq(boardArr.length - 1));
-      console.log('Player 2 wins!');
+      $('#modal-win').find('h2').text('Player 2 Wins!');
+      $('#modal-win').find('p').text('Player 2 takes the cake. Better luck next time, Player 1.');
+      $modalBkgrd.css('display', 'flex');
+      $('#modal-win').css('display', 'flex');
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', true);
     },
@@ -261,10 +268,17 @@ $(()=>{
     resetGame: ()=>{
       // console.log('hiii - RESET INITIATED');
       $('.square').empty();
+      $('#roll-num').empty();
+      $('#roll-num2').empty();
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', true);
       $resetBtn.prop('disabled', true);
       $startBtn.prop('disabled', false);
+    },
+
+    playAgain: ()=>{
+      $modalBkgrd.css('display', 'none');
+      functions.resetGame();
     }
 
   };
@@ -279,5 +293,6 @@ $(()=>{
   $rollBtn.on('click', functions.roll);
   $rollBtn2.on('click', functions.roll2);
   $resetBtn.on('click', functions.resetGame);
+  $playAgainBtn.on('click', functions.playAgain)
 
 });
