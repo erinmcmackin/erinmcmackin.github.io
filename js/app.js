@@ -4,6 +4,8 @@ $(()=>{
 
   const boardArr = [];
   const $modalBkgrd = $('#modal-bkgrd');
+  const $modalWin = $('#modal-win');
+  const $modalDelay = $('#modal-delay');
   const $square = $('.square');
   const $player = $('<img>').attr('src', 'css/images/shopping-cart-hi.png').addClass('player');
   const $player2 = $('<img>').attr('src', 'css/images/shopping-cart-wh.png').addClass('player');
@@ -17,15 +19,15 @@ $(()=>{
   const $playAgainBtn = $('#play-again');
   const delayArr = [
     {
-      delayName: 'banana',
+      delayName: 'slips on spilled milk.',
       delayHit: 1
     },
     {
-      delayName: 'family blocking aisle',
+      delayName: 'trapped by family blocking aisle.',
       delayHit: 3
     },
     {
-      delayName: 'clerk stocking shelves',
+      delayName: 'blocked by clerk stocking shelves.',
       delayHit: 2
     }
   ];
@@ -53,9 +55,16 @@ $(()=>{
 
   const functions = {
 
+    displayModalBkgrd: ()=>{
+      $modalBkgrd.css('display', 'flex');
+    },
+
+    hideModalBkgrd: ()=>{
+      $modalBkgrd.hide();
+    },
+
     onLoadClose: ()=>{
       // closes the on laod modal
-      // $('#modal-load-bkgrd').css('display', 'none');
       $modalBkgrd.css('display', 'none');
       $('#modal-on-load').css('display', 'none');
     },
@@ -86,20 +95,20 @@ $(()=>{
 
     winPlayer1: ()=>{
       $player.appendTo($('.square').eq(boardArr.length - 1));
-      $('#modal-win').find('h2').text('Player 1 Wins!');
-      $('#modal-win').find('p').text('Player 1 takes the cake. Better luck next time, Player 2.');
-      $modalBkgrd.css('display', 'flex');
-      $('#modal-win').css('display', 'flex');
+      $modalWin.find('h2').text('Player 1 Wins!');
+      $modalWin.find('p').text('Player 1 takes the cake. Better luck next time, Player 2.');
+      functions.displayModalBkgrd();
+      $modalWin.css('display', 'flex');
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', true);
     },
 
     winPlayer2: ()=>{
       $player2.appendTo($('.square').eq(boardArr.length - 1));
-      $('#modal-win').find('h2').text('Player 2 Wins!');
-      $('#modal-win').find('p').text('Player 2 takes the cake. Better luck next time, Player 1.');
-      $modalBkgrd.css('display', 'flex');
-      $('#modal-win').css('display', 'flex');
+      $modalWin.find('h2').text('Player 2 Wins!');
+      $modalWin.find('p').text('Player 2 takes the cake. Better luck next time, Player 1.');
+      functions.displayModalBkgrd();
+      $modalWin.css('display', 'flex');
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', true);
     },
@@ -117,9 +126,14 @@ $(()=>{
     },
 
     delayPlayer1: ()=>{
-      const randI = Math.floor(Math.random() * 2);
-      console.log(delayArr[randI].delayName);
-      alert('Move back ' + delayArr[randI].delayHit);
+      const randI = Math.floor(Math.random() * 3);
+      // console.log(delayArr[randI].delayName);
+      // alert('Move back ' + delayArr[randI].delayHit);
+      $modalDelay.find('h2').text('Player 1 ' +  delayArr[randI].delayName);
+      $modalDelay.find('p').text('Move back ' + delayArr[randI].delayHit + ' spots.');
+      functions.displayModalBkgrd();
+      $modalDelay.css('display', 'flex');
+      setTimeout(functions.hideModalBkgrd, 2000);
       newPlace = newPlace - delayArr[randI].delayHit;
       $player.appendTo($('.square').eq(newPlace));
       $rollBtn.prop('disabled', true);
@@ -127,9 +141,14 @@ $(()=>{
     },
 
     delayPlayer2: ()=>{
-      const randI = Math.floor(Math.random() * 2);
-      console.log(delayArr[randI].delayName);
-      alert('Move back ' + delayArr[randI].delayHit);
+      const randI = Math.floor(Math.random() * 3);
+      // console.log(delayArr[randI].delayName);
+      // alert('Move back ' + delayArr[randI].delayHit);
+      $modalDelay.find('h2').text('Player 2 ' +  delayArr[randI].delayName);
+      $modalDelay.find('p').text('Move back ' + delayArr[randI].delayHit + ' spots.');
+      functions.displayModalBkgrd();
+      $modalDelay.css('display', 'flex');
+      setTimeout(functions.hideModalBkgrd, 2000);
       newPlace2 = newPlace2 - delayArr[randI].delayHit;
       $player2.appendTo($('.square').eq(newPlace2));
       $rollBtn2.prop('disabled', true);
@@ -221,9 +240,9 @@ $(()=>{
         console.log('same spot 2');
         functions.battle2();
       } else if (newPlace2 % 5 === 0){
-        setTimeout(functions.delayPlayer2(), 800);
+        setTimeout(functions.delayPlayer2, 800);
       } else if (newPlace2 === 18){
-        setTimeout(functions.propelPlayer2(), 800);
+        setTimeout(functions.propelPlayer2, 800);
       } else {
         $rollBtn2.prop('disabled', true);
         $rollBtn.prop('disabled', false);
@@ -270,6 +289,8 @@ $(()=>{
       $('.square').empty();
       $('#roll-num').empty();
       $('#roll-num2').empty();
+      prevPlace = 0;
+      prevPlace2 = 0;
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', true);
       $resetBtn.prop('disabled', true);
