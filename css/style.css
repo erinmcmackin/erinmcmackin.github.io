@@ -83,20 +83,56 @@ p {
 #aside1, #aside2 {
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  width: 15%;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px 5px;
+  width: 100px;
   height: 700px;
   background-color: rgba(49, 149, 95, 0.7);
   max-width: 100px;
   min-width: 80px;
 }
 
-#aside1 {
-  margin-right: 5px;
+#aside1 img, #aside2 img {
+  width: 80px;
 }
 
-#aside2 {
-  margin-left: 5px;
+#aside2 h3 {
+  color: white;
+}
+
+#aside1 h3 {
+  color: black;
+}
+
+#roll, #roll2 {
+  margin: 20px;
+  font-size: 20px;
+  font-family: 'Mina', sans-serif;
+  color: #400000;
+  padding: 5px 20px;
+}
+
+#roll-num, #roll-num2 {
+  /* table display centers paragraph inside */
+  display: table;
+  background-color: whitesmoke;
+  width: 80px;
+  height: 80px;
+  /* align-items: center;
+  align-content: center;
+  justify-content: center; */
+}
+
+#roll-num p, #roll-num2 p {
+  font-size: 40px;
+  color: #400000;
+  /* the following centers the p */
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+  line-height: 100%;
+  font-weight: bolder;
 }
 
 /* #modal-load-bkgrd, #modal-inst-bkgrd  */

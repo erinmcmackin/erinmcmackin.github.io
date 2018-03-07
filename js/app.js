@@ -116,13 +116,13 @@ $(()=>{
     writeRoll: ()=>{
       // display the number rolled by Player 1 in the player's console
       $('#roll-num').empty();
-      $('<h3>').text(randNum).appendTo($('#roll-num'));
+      $('<p>').text(randNum).appendTo($('#roll-num'));
     },
 
     writeRoll2: ()=>{
       // display the number rolle by Player 2 in the player's console
       $('#roll-num2').empty();
-      $('<h3>').text(randNum2).appendTo($('#roll-num2'));
+      $('<p>').text(randNum2).appendTo($('#roll-num2'));
     },
 
     delayPlayer1: ()=>{
