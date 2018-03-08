@@ -135,12 +135,15 @@ $(()=>{
       const randI = Math.floor(Math.random() * 3);
       // console.log(delayArr[randI].delayName);
       // alert('Move back ' + delayArr[randI].delayHit);
+      console.log('this is the old ' + newPlace);
+      newPlace = newPlace - delayArr[randI].delayHit;
+      prevPlace = newPlace;
+      console.log('this is the new prev ' + prevPlace);
       $modalDelay.find('h2').text('You' +  delayArr[randI].delayName);
       $modalDelay.find('p').text('Move back ' + delayArr[randI].delayHit + ' spots.');
       functions.displayModalBkgrd();
       $modalDelay.css('display', 'flex');
       setTimeout(functions.hideModalBkgrd, 2000);
-      newPlace = newPlace - delayArr[randI].delayHit;
       $player.appendTo($('.square').eq(newPlace));
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', false);
@@ -150,12 +153,15 @@ $(()=>{
       const randI = Math.floor(Math.random() * 3);
       // console.log(delayArr[randI].delayName);
       // alert('Move back ' + delayArr[randI].delayHit);
+      console.log('this is the old ' + newPlace2);
+      newPlace2 = newPlace2 - delayArr[randI].delayHit;
+      prevPlace2 = newPlace2;
+      console.log('this is the new prev' + prevPlace2);
       $modalDelay.find('h2').text('You' +  delayArr[randI].delayName);
       $modalDelay.find('p').text('Move back ' + delayArr[randI].delayHit + ' spots.');
       functions.displayModalBkgrd();
       $modalDelay.css('display', 'flex');
       setTimeout(functions.hideModalBkgrd, 2000);
-      newPlace2 = newPlace2 - delayArr[randI].delayHit;
       $player2.appendTo($('.square').eq(newPlace2));
       $rollBtn2.prop('disabled', true);
       $rollBtn.prop('disabled', false);
@@ -169,6 +175,7 @@ $(()=>{
       $modalPropel.css('display', 'flex');
       setTimeout(functions.hideModalBkgrd, 2000);
       newPlace += 3;
+      prevPlace = newPlace;
       $player.appendTo($('.square').eq(newPlace));
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', false);
@@ -182,6 +189,7 @@ $(()=>{
       $modalPropel.css('display', 'flex');
       setTimeout(functions.hideModalBkgrd, 2000);
       newPlace2 += 3;
+      prevPlace2 = newPlace2;
       $player2.appendTo($('.square').eq(newPlace2));
       $rollBtn2.prop('disabled', true);
       $rollBtn.prop('disabled', false);
@@ -191,20 +199,20 @@ $(()=>{
       let randNumDual = Math.floor(Math.random() * 10 + 1);
       // console.log(randNumDual);
       if(randNumDual > 4){
+        $rollBtn.prop('disabled', false);
+        $rollBtn2.prop('disabled', true);
         $modalBattle.hide();
         // console.log('You tripped Player 2! You get to take their next roll');
         $modalBattleResult.css('display', 'flex');
-        $rollBtn.prop('disabled', false);
-        $rollBtn2.prop('disabled', true);
         setTimeout(functions.hideModalBkgrd, 2000);
       } else {
-        $modalBattle.hide();
         // console.log('They were too fast to trip!');
+        $rollBtn.prop('disabled', true);
+        $rollBtn2.prop('disabled', false);
+        $modalBattle.hide();
         $modalBattleResult.find('h2').text('They were too fast to trip!');
         $modalBattleResult.find('p').text('Player 2 keeps their turn.');
         $modalBattleResult.css('display', 'flex');
-        $rollBtn.prop('disabled', true);
-        $rollBtn2.prop('disabled', false);
         setTimeout(functions.hideModalBkgrd, 2000);
       };
     },
@@ -214,19 +222,19 @@ $(()=>{
       console.log(randNumDual);
       if(randNumDual > 4){
         // console.log('You tripped Player 1! You get to take their next roll');
-        $modalBattle.hide();
-        $modalBattleResult.css('display', 'flex');
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', false);
+        $modalBattle.hide();
+        $modalBattleResult.css('display', 'flex');
         setTimeout(functions.hideModalBkgrd, 2000);
       } else {
         // console.log('They were too fast to trip!');
+        $rollBtn.prop('disabled', false);
+        $rollBtn2.prop('disabled', true);
         $modalBattle.hide();
         $modalBattleResult.find('h2').text('They were too fast to trip!');
         $modalBattleResult.find('p').text('Player 1 keeps their turn.');
         $modalBattleResult.css('display', 'flex');
-        $rollBtn.prop('disabled', false);
-        $rollBtn2.prop('disabled', true);
         setTimeout(functions.hideModalBkgrd, 2000);
       };
     },
@@ -254,27 +262,6 @@ $(()=>{
         event.stopPropagation();
         functions.whimp();
       });
-      // $knockDownBtn.on('click', functions.knockDown);
-      // $smileBtn.on('click', functions.whimp);
-      // const shallWeDual = prompt('You\'ve caught up to Player 2. You can knock down a display to try to slow them down, or nod and carry on. What will you do?', 'knock display down / nod');
-      // if (shallWeDual === 'knock display down'){
-      //   // console.log('knocked down display');
-      //   const randNumDual = Math.floor(Math.random() * 10 + 1);
-      //   console.log(randNumDual);
-      //   if (randNumDual > 4){
-      //     console.log('You tripped Player 2! You get to take their next roll');
-      //     $rollBtn.prop('disabled', false);
-      //     $rollBtn2.prop('disabled', true);
-      //   } else {
-      //     console.log('They were too fast to trip!');
-      //     $rollBtn.prop('disabled', true);
-      //     $rollBtn2.prop('disabled', false);
-      //   }
-      // } else {
-      //   console.log('what a whimp');
-      //   $rollBtn.prop('disabled', true);
-      //   $rollBtn2.prop('disabled', false);
-      // }
     },
 
     battle2: ()=>{
@@ -295,12 +282,12 @@ $(()=>{
       if(newPlace >= boardArr.length - 1){
         functions.winPlayer1();
       } else if(newPlace > 0 && newPlace === newPlace2){
-        console.log('same spot');
+        // console.log('same spot');
         functions.battle();
       } else if (newPlace === 6 || newPlace === 14 || newPlace === 26){
-        setTimeout(functions.delayPlayer1(), 800);
+        setTimeout(functions.delayPlayer1, 800);
       } else if (newPlace === 17 || newPlace === 18){
-        setTimeout(functions.propelPlayer1(), 800);
+        setTimeout(functions.propelPlayer1, 800);
       } else {
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', false);
@@ -312,7 +299,7 @@ $(()=>{
       if(newPlace2 >= boardArr.length - 1){
         functions.winPlayer2();
       } else if(newPlace2 > 0 && newPlace2 === newPlace){
-        console.log('same spot 2');
+        // console.log('same spot 2');
         functions.battle2();
       } else if (newPlace2 === 6 || newPlace2 === 14 || newPlace2 === 26){
         setTimeout(functions.delayPlayer2, 800);
@@ -332,14 +319,13 @@ $(()=>{
       newPlace = prevPlace + randNum;
       // move the player to the new square (previous location plus random number rolled)
       // setTimeout gives time for the rolled number to show before moving
+      prevPlace = newPlace;
       setTimeout(function(){
         $player.appendTo($('.square').eq(newPlace));
       }, 600);
-      // functions.movePlayer();
-      prevPlace = newPlace;
       setTimeout(function(){
         functions.ifStatements();
-      }, 1000);
+      }, 600);
     },
 
     // roll a random number for Player 2
@@ -350,13 +336,13 @@ $(()=>{
       newPlace2 = prevPlace2 + randNum2;
       // move the player to the new square (previous location plus random number rolled)
       // setTimeout gives time for the rolled number to show before moving
+      prevPlace2 = newPlace2;
       setTimeout(function(){
         $player2.appendTo($('.square').eq(newPlace2));
       }, 600);
-      prevPlace2 = newPlace2;
       setTimeout(function(){
         functions.ifStatements2();
-      }, 1000);
+      }, 600);
     },
 
     resetGame: ()=>{
