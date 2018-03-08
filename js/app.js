@@ -48,8 +48,27 @@ $(()=>{
       const $div = $('<div>').attr('class', 'square').attr('id', i).appendTo('#game-board');
       boardArr.push($div);
     };
-    $('.square').eq(boardArr.length - 1).css('background', 'url("css/images/cake-transp.png")').css('background-size', 'cover');
-    $('.square').eq(0).css('background', 'url("css/images/doors.png")').css('background-size', 'cover');
+    $('.square').eq(boardArr.length - 1).css(
+      {'background': 'url("css/images/cake-transp.png")', 'background-size': 'cover'}
+    );
+    $('.square').eq(0).css(
+      {'background': 'url("css/images/doors.png")', 'background-size': 'cover'}
+    );
+    $('.square').eq(17).css(
+      {'background': 'url("css/images/tb.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat'}
+    );
+    $('.square').eq(18).css(
+      {'background': 'url("css/images/tb.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat'}
+    );
+    $('.square').eq(6).css(
+      {'background': 'url("css/images/warning.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}
+    );
+    $('.square').eq(14).css(
+      {'background': 'url("css/images/warning.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}
+    );
+    $('.square').eq(26).css(
+      {'background': 'url("css/images/warning.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}
+    );
     // console.log(boardArr);
   };
 
@@ -70,7 +89,7 @@ $(()=>{
     },
 
     onLoadClose: ()=>{
-      // closes the on laod modal
+      // closes the on laod modal, starts game
       $modalBkgrd.css('display', 'none');
       $('#modal-on-load').css('display', 'none');
       $rollBtn.prop('disabled', false);
@@ -183,7 +202,7 @@ $(()=>{
     },
 
     knockDown: ()=>{
-      let randNumDual = Math.floor(Math.random() * 11 + 1);
+      let randNumDual = Math.floor(Math.random() * 10 + 1);
       // console.log(randNumDual);
       if(randNumDual > 4){
         $modalBattle.hide();
@@ -193,7 +212,7 @@ $(()=>{
         $rollBtn2.prop('disabled', true);
         setTimeout(functions.hideModalBkgrd, 2000);
       } else {
-        // $modalBattle.hide();
+        $modalBattle.hide();
         // console.log('They were too fast to trip!');
         $modalBattleResult.find('h2').text('They were too fast to trip!');
         $modalBattleResult.find('p').text('Player 2 keeps their turn.');
@@ -205,7 +224,7 @@ $(()=>{
     },
 
     knockDown2: ()=>{
-      let randNumDual = Math.floor(Math.random() * 11 + 1);
+      let randNumDual = Math.floor(Math.random() * 10 + 1);
       console.log(randNumDual);
       if(randNumDual > 4){
         // console.log('You tripped Player 1! You get to take their next roll');
@@ -216,7 +235,7 @@ $(()=>{
         setTimeout(functions.hideModalBkgrd, 2000);
       } else {
         // console.log('They were too fast to trip!');
-        // $modalBattle.hide();
+        $modalBattle.hide();
         $modalBattleResult.find('h2').text('They were too fast to trip!');
         $modalBattleResult.find('p').text('Player 1 keeps their turn.');
         $modalBattleResult.css('display', 'flex');
@@ -241,8 +260,14 @@ $(()=>{
     battle: ()=>{
       functions.displayModalBkgrd();
       $modalBattle.css('display', 'flex');
-      $knockDownBtn.on('click', functions.knockDown);
-      $smileBtn.on('click', functions.whimp);
+      $knockDownBtn.on('click', ()=>{
+        event.stopPropagation();
+        functions.knockDown();
+      });
+      $smileBtn.on('click', ()=>{
+        event.stopPropagation();
+        functions.whimp();
+      });
       // $knockDownBtn.on('click', functions.knockDown);
       // $smileBtn.on('click', functions.whimp);
       // const shallWeDual = prompt('You\'ve caught up to Player 2. You can knock down a display to try to slow them down, or nod and carry on. What will you do?', 'knock display down / nod');
@@ -269,8 +294,14 @@ $(()=>{
     battle2: ()=>{
       functions.displayModalBkgrd();
       $modalBattle.css('display', 'flex');
-      $knockDownBtn.on('click', functions.knockDown2);
-      $smileBtn.on('click', functions.whimp2);
+      $knockDownBtn.on('click', ()=>{
+        event.stopPropagation();
+        functions.knockDown2();
+      });
+      $smileBtn.on('click', ()=>{
+        event.stopPropagation();
+        functions.whimp2();
+      });
     },
 
     ifStatements: ()=>{
@@ -280,9 +311,9 @@ $(()=>{
       } else if(newPlace > 0 && newPlace === newPlace2){
         console.log('same spot');
         functions.battle();
-      } else if (newPlace % 5 === 0){
+      } else if (newPlace === 6 || newPlace === 14 || newPlace === 26){
         setTimeout(functions.delayPlayer1(), 800);
-      } else if (newPlace === 18){
+      } else if (newPlace === 17 || newPlace === 18){
         setTimeout(functions.propelPlayer1(), 800);
       } else {
         $rollBtn.prop('disabled', true);
@@ -297,9 +328,9 @@ $(()=>{
       } else if(newPlace2 > 0 && newPlace2 === newPlace){
         console.log('same spot 2');
         functions.battle2();
-      } else if (newPlace2 % 5 === 0){
+      } else if (newPlace2 === 6 || newPlace2 === 14 || newPlace2 === 26){
         setTimeout(functions.delayPlayer2, 800);
-      } else if (newPlace2 === 18){
+      } else if (newPlace2 === 17 || newPlace2 === 18){
         setTimeout(functions.propelPlayer2, 800);
       } else {
         $rollBtn2.prop('disabled', true);
@@ -350,9 +381,7 @@ $(()=>{
       $('#roll-num2').empty();
       prevPlace = 0;
       prevPlace2 = 0;
-      $rollBtn.prop('disabled', true);
-      $rollBtn2.prop('disabled', true);
-      $resetBtn.prop('disabled', true);
+      functions.onLoadClose();
     }
 
   };
@@ -367,9 +396,6 @@ $(()=>{
   $rollBtn2.on('click', functions.roll2);
   $resetBtn.on('click', functions.resetGame);
   $playAgainBtn.on('click', functions.resetGame);
-  $modalBkgrd.on('click', ()=>{
-    event.stopPropagation();
-    functions.hideModalBkgrd();
-  });
+  $modalBkgrd.on('click', functions.hideModalBkgrd);
 
 });
