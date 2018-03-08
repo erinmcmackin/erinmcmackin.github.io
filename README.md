@@ -31,3 +31,4 @@ A player wins by reaching the cake (the end of the board), first. They can overs
 - An option to play the computer
 - Adapt for mobile
 - Improve appearance
+- More images for the modals
