@@ -84,6 +84,9 @@ p {
   padding: 0;
   justify-content: space-around;
   align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .player {

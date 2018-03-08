@@ -48,27 +48,13 @@ $(()=>{
       const $div = $('<div>').attr('class', 'square').attr('id', i).appendTo('#game-board');
       boardArr.push($div);
     };
-    $('.square').eq(boardArr.length - 1).css(
-      {'background': 'url("css/images/cake-transp.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}
-    );
-    $('.square').eq(0).css(
-      {'background': 'url("css/images/doors.png")', 'background-size': 'contain'}
-    );
-    $('.square').eq(17).css(
-      {'background': 'url("css/images/tb.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat'}
-    );
-    $('.square').eq(18).css(
-      {'background': 'url("css/images/tb.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat'}
-    );
-    $('.square').eq(6).css(
-      {'background': 'url("css/images/warning.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}
-    );
-    $('.square').eq(14).css(
-      {'background': 'url("css/images/warning.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}
-    );
-    $('.square').eq(26).css(
-      {'background': 'url("css/images/warning.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}
-    );
+    $('.square').eq(boardArr.length - 1).css('background-image', 'url("css/images/cake-transp.png")');
+    $('.square').eq(0).css('background-image', 'url("css/images/doors.png")');
+    $('.square').eq(17).css('background-image', 'url("css/images/tb.png")');
+    $('.square').eq(18).css('background-image', 'url("css/images/tb.png")');
+    $('.square').eq(6).css('background-image', 'url("css/images/warning.png")');
+    $('.square').eq(14).css('background-image', 'url("css/images/warning.png")');
+    $('.square').eq(26).css('background-image', 'url("css/images/warning.png")');
     // console.log(boardArr);
   };
 
