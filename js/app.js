@@ -15,7 +15,6 @@ $(()=>{
   const $closeLoadBtn = $('#close-load-btn');
   const $instructionsBtn = $('#instructions');
   const $closeInstBtn = $('#close-inst-btn');
-  const $startBtn = $('#start');
   const $rollBtn = $('#roll').prop('disabled', true);
   const $resetBtn = $('#reset').prop('disabled', true);
   const $rollBtn2 = $('#roll2').prop('disabled', true);
@@ -63,17 +62,22 @@ $(()=>{
 
     displayModalBkgrd: ()=>{
       $modalBkgrd.css('display', 'flex');
-      $modalBkgrd.children().hide();
     },
 
     hideModalBkgrd: ()=>{
       $modalBkgrd.hide();
+      $modalBkgrd.children().hide();
     },
 
     onLoadClose: ()=>{
       // closes the on laod modal
       $modalBkgrd.css('display', 'none');
       $('#modal-on-load').css('display', 'none');
+      $rollBtn.prop('disabled', false);
+      $rollBtn2.prop('disabled', false);
+      $resetBtn.prop('disabled', false);
+      $player.appendTo($('.square').eq(0));
+      $player2.appendTo($('.square').eq(0));
     },
 
     instructionsOpen: ()=>{
@@ -88,16 +92,6 @@ $(()=>{
       // $('#modal-inst-bkgrd').css('display', 'none');
       $modalBkgrd.css('display', 'none');
       $('#modal-instructions').css('display', 'none');
-    },
-
-    start: ()=>{
-      // starting state for gameboard
-      $startBtn.prop('disabled', true);
-      $rollBtn.prop('disabled', false);
-      $rollBtn2.prop('disabled', false);
-      $resetBtn.prop('disabled', false);
-      $player.appendTo($('.square').eq(0));
-      $player2.appendTo($('.square').eq(0));
     },
 
     winPlayer1: ()=>{
@@ -189,21 +183,21 @@ $(()=>{
     },
 
     knockDown: ()=>{
-      const randNumDual = Math.floor(Math.random() * 10 + 1);
+      let randNumDual = Math.floor(Math.random() * 11 + 1);
       // console.log(randNumDual);
-      if (randNumDual > 4){
+      if(randNumDual > 4){
         $modalBattle.hide();
         // console.log('You tripped Player 2! You get to take their next roll');
-        $modalBattleResult.css('display', 'flex')
+        $modalBattleResult.css('display', 'flex');
         $rollBtn.prop('disabled', false);
         $rollBtn2.prop('disabled', true);
         setTimeout(functions.hideModalBkgrd, 2000);
       } else {
-        $modalBattle.hide();
+        // $modalBattle.hide();
         // console.log('They were too fast to trip!');
         $modalBattleResult.find('h2').text('They were too fast to trip!');
         $modalBattleResult.find('p').text('Player 2 keeps their turn.');
-        $modalBattleResult.css('display', 'flex')
+        $modalBattleResult.css('display', 'flex');
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', false);
         setTimeout(functions.hideModalBkgrd, 2000);
@@ -211,37 +205,37 @@ $(()=>{
     },
 
     knockDown2: ()=>{
-      const randNumDual = Math.floor(Math.random() * 10 + 1);
+      let randNumDual = Math.floor(Math.random() * 11 + 1);
       console.log(randNumDual);
-      if (randNumDual > 4){
+      if(randNumDual > 4){
         // console.log('You tripped Player 1! You get to take their next roll');
         $modalBattle.hide();
-        $modalBattleResult.css('display', 'flex')
+        $modalBattleResult.css('display', 'flex');
         $rollBtn.prop('disabled', true);
         $rollBtn2.prop('disabled', false);
-        setTimeout(functions.hideModalBkgrd, 1000);
+        setTimeout(functions.hideModalBkgrd, 2000);
       } else {
         // console.log('They were too fast to trip!');
-        $modalBattle.hide();
+        // $modalBattle.hide();
         $modalBattleResult.find('h2').text('They were too fast to trip!');
         $modalBattleResult.find('p').text('Player 1 keeps their turn.');
-        $modalBattleResult.css('display', 'flex')
+        $modalBattleResult.css('display', 'flex');
         $rollBtn.prop('disabled', false);
         $rollBtn2.prop('disabled', true);
-        setTimeout(functions.hideModalBkgrd, 1000);
+        setTimeout(functions.hideModalBkgrd, 2000);
       };
     },
 
     whimp: ()=>{
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', false);
-      hideModalBkgrd();
+      functions.hideModalBkgrd();
     },
 
     whimp2: ()=>{
       $rollBtn.prop('disabled', false);
       $rollBtn2.prop('disabled', true);
-      hideModalBkgrd();
+      functions.hideModalBkgrd();
     },
 
     battle: ()=>{
@@ -350,6 +344,7 @@ $(()=>{
 
     resetGame: ()=>{
       // console.log('hiii - RESET INITIATED');
+      $modalBkgrd.children().hide();
       $('.square').empty();
       $('#roll-num').empty();
       $('#roll-num2').empty();
@@ -358,12 +353,6 @@ $(()=>{
       $rollBtn.prop('disabled', true);
       $rollBtn2.prop('disabled', true);
       $resetBtn.prop('disabled', true);
-      $startBtn.prop('disabled', false);
-    },
-
-    playAgain: ()=>{
-      functions.resetGame();
-      functions.hideModalBkgrd();
     }
 
   };
@@ -374,11 +363,13 @@ $(()=>{
   $closeLoadBtn.on('click', functions.onLoadClose);
   $instructionsBtn.on('click', functions.instructionsOpen);
   $closeInstBtn.on('click', functions.instructionsClose);
-  $startBtn.on('click', functions.start);
   $rollBtn.on('click', functions.roll);
   $rollBtn2.on('click', functions.roll2);
   $resetBtn.on('click', functions.resetGame);
-  $playAgainBtn.on('click', functions.playAgain);
-  $modalBkgrd.on('click', functions.hideModalBkgrd);
+  $playAgainBtn.on('click', functions.resetGame);
+  $modalBkgrd.on('click', ()=>{
+    event.stopPropagation();
+    functions.hideModalBkgrd();
+  });
 
 });
