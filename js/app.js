@@ -49,10 +49,10 @@ $(()=>{
       boardArr.push($div);
     };
     $('.square').eq(boardArr.length - 1).css(
-      {'background': 'url("css/images/cake-transp.png")', 'background-size': 'cover'}
+      {'background': 'url("css/images/cake-transp.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}
     );
     $('.square').eq(0).css(
-      {'background': 'url("css/images/doors.png")', 'background-size': 'cover'}
+      {'background': 'url("css/images/doors.png")', 'background-size': 'contain'}
     );
     $('.square').eq(17).css(
       {'background': 'url("css/images/tb.png")', 'background-size': 'contain', 'background-repeat': 'no-repeat'}
